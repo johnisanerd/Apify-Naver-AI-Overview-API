@@ -49,4 +49,10 @@ for item in items:
         print(markdown[:500] + ("..." if len(markdown) > 500 else ""))
     for ref in item.get("references", []):
         print(f"  source: {ref.get('title')}  {ref.get('link')}")
+    # Naver also suggests follow-up questions for the answer.
+    related = item.get("related_questions", [])
+    if related:
+        print("Related questions:")
+        for rq in related:
+            print(f"  - {rq.get('question')}")
     print()

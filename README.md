@@ -136,27 +136,67 @@ MCP-ready. AI agents can call it as a tool through the hosted Apify MCP server, 
 
 ## Output Format / 출력 형식
 
-Each item in the dataset is one query's AI Overview:
+Each item in the dataset is one query's AI Overview. `text_blocks` comes in four kinds (`paragraph`, `header`, `list`, `table`), so the answer keeps its original structure:
 
 ```json
 {
   "result_type": "ai_overview",
   "query": "당뇨병 증상",
   "ai_overview_present": true,
-  "markdown": "당뇨병의 주요 증상은 ...",
+  "markdown": "당뇨병의 대표 증상은 갈증, 다뇨, 다식입니다 ...",
   "text_blocks": [
-    { "type": "paragraph", "snippet": "당뇨병의 주요 증상은 ...", "reference_indexes": [0, 1] }
+    { "type": "header", "snippet": "당뇨병 증상", "reference_indexes": [1, 2] },
+    { "type": "paragraph", "snippet": "당뇨병의 대표 증상은 갈증이 심해지고 ...", "reference_indexes": [1, 2] },
+    { "type": "list", "list": [
+      { "snippet": "혈당이 크게 높지 않으면 증상을 느끼지 못할 수 있습니다.", "reference_indexes": [1, 2] }
+    ] },
+    { "type": "table",
+      "table": [
+        ["증상", "의미", "함께 나타날 수 있는 증상"],
+        ["갈증", "수분이 함께 빠져 탈수 느낌", "피로, 시야 흐림"]
+      ],
+      "formatted": [
+        { "증상": "갈증", "의미": "수분이 함께 빠져 탈수 느낌", "함께_나타날_수_있는_증상": "피로, 시야 흐림" }
+      ]
+    }
   ],
   "references": [
-    { "index": 0, "title": "당뇨병 - 질병관리청", "link": "https://example.go.kr/...", "source": "질병관리청" }
+    { "index": 1, "title": "당뇨병의 증상 - 삼성서울병원", "snippet": "당뇨병의 증상 모든 당뇨인이 ...", "link": "https://www.samsunghospital.com/...", "source": "삼성서울병원", "source_icon": "https://www.samsunghospital.com/favicon.ico" }
   ],
   "media": [
-    { "title": "당뇨병 증상 설명", "platform": "video", "link": "https://example.com/...", "thumbnail": "https://..." }
-  ]
+    { "title": "당뇨병 증상 설명", "platform": "네이버 블로그", "link": "https://blog.naver.com/...", "thumbnail": "https://..." }
+  ],
+  "related_questions": [
+    { "question": "당뇨병 예방을 위한 식단 관리 방법 알려주세요" }
+  ],
+  "fetched_at": "2026-06-02T16:40:49.179631+00:00"
 }
 ```
 
-> **한국어:** 데이터셋의 각 항목은 하나의 검색어에 대한 AI 브리핑입니다. `ai_overview_present`는 AI 답변 존재 여부를, `markdown`은 답변 전문을, `text_blocks`는 출처 인덱스가 연결된 구조화 텍스트를, `references`는 인용 출처를, `media`는 관련 동영상/이미지를 담습니다.
+### Field reference / 필드 설명
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `result_type` | `str` | Always `ai_overview`. |
+| `query` | `str` | The query this row answers. |
+| `ai_overview_present` | `bool` | Whether Naver returned an AI Overview for this query. |
+| `markdown` | `str` | The full answer rendered as markdown. |
+| `text_blocks` | `list` | Structured answer blocks. `type` is `paragraph`, `header`, `list`, or `table`. Paragraph/header blocks have `snippet` + `reference_indexes`; `list` blocks have a `list` of `{snippet, reference_indexes}`; `table` blocks have a raw `table` (array of rows) plus a `formatted` array of row objects keyed by column header. |
+| `references` | `list` | Cited sources: `index`, `title`, `snippet`, `link`, `source`, `source_icon`. `reference_indexes` in text blocks point here. |
+| `media` | `list` | Related media: `title`, `platform` (the publisher, e.g. `네이버 블로그`, `네이버 뉴스`, `클립`), `link`, `thumbnail`. |
+| `related_questions` | `list` | Follow-up questions Naver suggests, each as `{ question }`. |
+| `fetched_at` | `str` | ISO 8601 timestamp of when the row was fetched. |
+
+> **한국어:** 데이터셋의 각 항목은 하나의 검색어에 대한 AI 브리핑입니다.
+> - `result_type`: 항상 `ai_overview`.
+> - `query`: 이 행이 답하는 검색어.
+> - `ai_overview_present`: 네이버가 이 검색어에 AI 브리핑을 반환했는지 여부.
+> - `markdown`: 마크다운으로 렌더링된 답변 전문.
+> - `text_blocks`: 구조화된 답변 블록. `type`은 `paragraph`, `header`, `list`, `table` 중 하나입니다. 문단/헤더 블록은 `snippet`과 `reference_indexes`를, `list` 블록은 `{snippet, reference_indexes}`의 `list`를, `table` 블록은 원본 `table`(행 배열)과 열 머리글을 키로 하는 `formatted`(행 객체 배열)를 가집니다.
+> - `references`: 인용 출처(`index`, `title`, `snippet`, `link`, `source`, `source_icon`). 텍스트 블록의 `reference_indexes`가 여기를 가리킵니다.
+> - `media`: 관련 미디어(`title`, `platform`(예: `네이버 블로그`, `네이버 뉴스`, `클립`), `link`, `thumbnail`).
+> - `related_questions`: 네이버가 제안하는 후속 질문, 각각 `{ question }` 형태.
+> - `fetched_at`: 행을 가져온 시점의 ISO 8601 타임스탬프.
 
 ---
 
