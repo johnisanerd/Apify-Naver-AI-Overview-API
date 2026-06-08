@@ -375,4 +375,4 @@ More help: https://docs.apify.com/platform/integrations/mcp
 
 *네이버 AI 브리핑 API로 한국 AI 검색에서 내 브랜드의 노출 상태를 모니터링하세요.*
 
-Last Updated: 2026.06.08
+Last Updated: 2026.06.09
