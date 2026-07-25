@@ -286,7 +286,7 @@ On claude.ai you add Apify as a connector, then enable just this Actor's tool.
 4. Alternatively, choose **Add custom connector** and paste the full MCP URL `https://mcp.apify.com/?tools=actors,docs,johnvc/naver-ai-overview-api`, using OAuth when prompted.
 5. Ask Claude to run the Naver AI Overview API.
 
-Open Claude on the web: https://claude.ai
+Open Claude on the web: https://claude.ai/referral/uIlpa7nPLg
 
 > **한국어:** claude.ai에서는 Apify를 커넥터로 추가한 뒤 이 Actor의 도구만 활성화합니다.
 > 1. **Settings → Connectors → Browse connectors**로 이동해 **Apify MCP server**를 검색하고 설치합니다.
@@ -295,7 +295,7 @@ Open Claude on the web: https://claude.ai
 > 4. 또는 **Add custom connector**를 선택해 전체 MCP URL `https://mcp.apify.com/?tools=actors,docs,johnvc/naver-ai-overview-api`를 붙여넣고 OAuth로 인증합니다.
 > 5. Claude에 네이버 AI 브리핑 API 실행을 요청하세요.
 >
-> 웹에서 Claude 열기: https://claude.ai
+> 웹에서 Claude 열기: https://claude.ai/referral/uIlpa7nPLg
 
 ---
 
