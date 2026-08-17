@@ -7,7 +7,7 @@
 **Actor page:** [apify.com/johnvc/naver-ai-overview-api](https://apify.com/johnvc/naver-ai-overview-api?fpr=9n7kx3)
 **Input schema:** [apify.com/johnvc/naver-ai-overview-api/input-schema](https://apify.com/johnvc/naver-ai-overview-api/input-schema?fpr=9n7kx3)
 
-Track Naver's AI Overview answers for any query and get the AI-generated overview, its cited sources, and related media as structured JSON. Naver is South Korea's largest search engine, and its AI answers increasingly shape what Korean users see first. Use this API to monitor whether your brand, product, or topic appears in those answers, and which sources Naver cites. This is a brand-monitoring and answer-engine-optimization (AEO) tool.
+Track Naver's AI Overview answers for any query and get the AI-generated overview, its cited sources, and related media as structured JSON. [Naver](https://apify.com/johnvc/naver-search-api?fpr=9n7kx3) is South Korea's largest search engine, and its AI answers increasingly shape what Korean users see first. Use this API to monitor whether your brand, product, or topic appears in those answers, and which sources Naver cites. This is a brand-monitoring and answer-engine-optimization (AEO) tool.
 
 > **한국어:** 네이버의 AI 브리핑(AI Overview) 답변을 검색어별로 추적하여, AI가 생성한 요약과 인용 출처, 관련 미디어를 구조화된 JSON으로 받아보세요. 네이버는 한국 최대 검색 엔진이며, 그 AI 답변이 한국 사용자가 가장 먼저 보는 내용을 점점 더 좌우하고 있습니다. 이 API로 내 브랜드, 제품, 주제가 그 답변에 등장하는지, 그리고 네이버가 어떤 출처를 인용하는지 모니터링하세요. 브랜드 모니터링과 답변 엔진 최적화(AEO)를 위한 도구입니다.
 
